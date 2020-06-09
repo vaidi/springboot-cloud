@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: single-customer
+server:
+  port: 3002
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:3000/eureka  #注册到 eureka
+  instance:
+    preferIpAddress: true

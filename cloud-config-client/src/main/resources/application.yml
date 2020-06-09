@@ -1,0 +1,19 @@
+server:
+  port: 3302
+management:
+  endpoint:
+    shutdown:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+#http://localhost:3302/actuator/refresh   调用这个接口才能触发刷新
+
+
+#
+#data:
+#  env: NaN
+#  user:
+#    username: NaN
+#    password: NaN
