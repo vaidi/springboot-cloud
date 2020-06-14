@@ -20,6 +20,8 @@
         <module>cloud-eureka-server</module>
         <module>cloud-eureka-provider</module>
         <module>cloud-eureka-consumer</module>
+        <module>cloud-mq-provider</module>
+        <module>cloud-mq-consumer</module>
     </modules>
 
 

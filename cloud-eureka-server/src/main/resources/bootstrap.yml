@@ -1,6 +1,10 @@
 spring:
   application:
    name: kite-eureka-center
+  security:
+    user:
+      name: xxh
+      password: 310292863
   cloud:
    inetutils: ## 网卡设置
     ignoredInterfaces:  ## 忽略的网卡

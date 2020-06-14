@@ -2,15 +2,16 @@ package xxh;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
- * @author erlong
+ * @Author: xxh——el
+ * @Date: 2020/6/10 8:08 下午
  */
 @SpringBootApplication
-@EnableDiscoveryClient
-public class ConfigClient {
+public class ReceiverApp {
+
     public static void main(String[] args) {
-        SpringApplication.run(ConfigClient.class, args);
+        SpringApplication.run(ReceiverApp.class, args);
     }
+
 }
