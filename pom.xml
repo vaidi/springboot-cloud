@@ -22,6 +22,7 @@
         <module>cloud-eureka-consumer</module>
         <module>cloud-mq-provider</module>
         <module>cloud-mq-consumer</module>
+        <module>cloud-consul-client</module>
     </modules>
 
 

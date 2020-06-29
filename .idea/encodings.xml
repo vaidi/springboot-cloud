@@ -4,6 +4,7 @@
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cloud-config-client" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cloud-config-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cloud-consul-client" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cloud-eureka-consumer" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cloud-eureka-provider" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cloud-eureka-server" charset="UTF-8" />
