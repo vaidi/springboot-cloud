@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        prefix: xxh
+        file-extension: yaml
+      discovery:
+        server-addr: 127.0.0.1:8848
+  application:
+    name: hello-nacos
+
+
+

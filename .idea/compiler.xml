@@ -13,6 +13,7 @@
         <module name="cloud-config-server" />
         <module name="cloud-eureka-provider" />
         <module name="cloud-mq-consumer" />
+        <module name="cloud-nacos-hello" />
         <module name="cloud-eureka-server" />
         <module name="cloud-mq-provider" />
       </profile>
@@ -28,6 +29,7 @@
       <module name="cloud-eureka-server" options="-parameters" />
       <module name="cloud-mq-consumer" options="-parameters" />
       <module name="cloud-mq-provider" options="-parameters" />
+      <module name="cloud-nacos-hello" options="-parameters" />
     </option>
   </component>
 </project>
