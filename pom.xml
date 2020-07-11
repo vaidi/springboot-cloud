@@ -24,6 +24,7 @@
         <module>cloud-mq-consumer</module>
         <module>cloud-consul-client</module>
         <module>cloud-nacos-hello</module>
+        <module>cloud-mq</module>
     </modules>
 
 

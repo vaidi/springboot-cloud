@@ -1,0 +1,20 @@
+spring:
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+    publisher-confirms: true
+    publisher-returns: true
+    template:
+      mandatory: true
+      ###监听者信息配置
+    listener:
+      concurrency: 2 #最小消息监听线程数
+      max-concurrency: 2 #最大消息监听线程数
+
+
+logging:
+  level:
+    root: info
+

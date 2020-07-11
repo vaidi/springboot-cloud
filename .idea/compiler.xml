@@ -15,6 +15,7 @@
         <module name="cloud-mq-consumer" />
         <module name="cloud-nacos-hello" />
         <module name="cloud-eureka-server" />
+        <module name="cloud-mq" />
         <module name="cloud-mq-provider" />
       </profile>
     </annotationProcessing>
@@ -27,6 +28,7 @@
       <module name="cloud-eureka-consumer" options="-parameters" />
       <module name="cloud-eureka-provider" options="-parameters" />
       <module name="cloud-eureka-server" options="-parameters" />
+      <module name="cloud-mq" options="-parameters" />
       <module name="cloud-mq-consumer" options="-parameters" />
       <module name="cloud-mq-provider" options="-parameters" />
       <module name="cloud-nacos-hello" options="-parameters" />
