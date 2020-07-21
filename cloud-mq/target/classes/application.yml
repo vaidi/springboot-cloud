@@ -4,16 +4,17 @@ spring:
     port: 5672
     username: guest
     password: guest
-    publisher-confirms: true
-    publisher-returns: true
+    publisher-confirms: true #确认消息已发送到交换机(Exchange)
+    publisher-returns: true  #确认消息已发送到队列(Queue)
     template:
       mandatory: true
       ###监听者信息配置
     listener:
-      concurrency: 2 #最小消息监听线程数
-      max-concurrency: 2 #最大消息监听线程数
-
-
+      simple:
+       default-requeue-rejected: false  #消息重新进入队列是否开启
+       concurrency: 2 #最小消息监听线程数
+       max-concurrency: 2 #最大消息监听线程数
+       acknowledge-mode: manual #消费者接受消息 确认方式AcknowledgeMode.NONE：自动确认，AcknowledgeMode.AUTO：根据情况确认，AcknowledgeMode.MANUAL：手动确认
 logging:
   level:
     root: info

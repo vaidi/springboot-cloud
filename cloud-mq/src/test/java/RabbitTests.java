@@ -7,10 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import xxh.MQApplication;
-import xxh.config.DirectMqConfig;
-import xxh.config.FanoutMqConfig;
-import xxh.config.HeadersMqConfig;
-import xxh.config.TopicMqConfig;
+import xxh.config.*;
+import xxh.producer.MqConfirmCallBack;
+import xxh.receiver.ChannelBasicReceiver;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -29,6 +28,52 @@ public class RabbitTests {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
+    @Autowired
+    private MqConfirmCallBack mqConfirmCallBack;
+
+
+    @Test
+    public void testDeadQueue ()throws InterruptedException{
+        AtomicInteger integer = new AtomicInteger(0);
+        while (true) {
+            new Thread(()->{
+                int mm = integer.getAndIncrement();
+                rabbitTemplate.convertAndSend(DeadMqConfig.BUSINESS_EXCHANGE_NAME,"xx","发送的消息:"+mm);
+
+            }).start();
+
+        }
+    }
+
+
+
+
+
+
+
+    @Test
+    public void testBasic()throws InterruptedException{
+        AtomicInteger integer = new AtomicInteger(0);
+        while (true) {
+            int mm = integer.getAndIncrement();
+            rabbitTemplate.convertAndSend(ChannelBasicReceiver.BASIC_EXCHANGE,"xx",mm);
+            sleep(3000);
+        }
+    }
+
+
+
+
+
+    @Test
+    public void testConfirm()throws InterruptedException{
+        AtomicInteger integer = new AtomicInteger(0);
+        while (true) {
+            int mm = integer.getAndIncrement();
+            rabbitTemplate.convertAndSend(TopicMqConfig.TOPIC_EXCHANGE,"xx",mm);
+            sleep(3000);
+        }
+    }
 
 
 
