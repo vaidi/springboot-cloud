@@ -15,8 +15,8 @@ import java.util.UUID;
  */
 @Configuration
 @Slf4j
-public class Sender implements RabbitTemplate.ConfirmCallback {
-//, RabbitTemplate.ReturnCallback
+public class Sender implements RabbitTemplate.ConfirmCallback, RabbitTemplate.ReturnCallback {
+
     private  RabbitTemplate rabbitTemplate;
 
 
@@ -26,24 +26,20 @@ public class Sender implements RabbitTemplate.ConfirmCallback {
 
     @PostConstruct
     public void init(){
-        rabbitTemplate.setConfirmCallback(this);            //指定 ConfirmCallback
-        System.err.println("指定confirm");
-        System.err.println("指定confirm");
-        System.err.println("指定confirm");
-
+        rabbitTemplate.setConfirmCallback(this);
+        rabbitTemplate.setReturnCallback(this);
     }
 
     @Override
     public void confirm(CorrelationData correlationData, boolean ack, String cause) {
-        //log.warn("confirm消息唯一标识:" + correlationData + ",确认结果ack:" + ack + ",cause失败原因:" + cause);
+        System.err.println("Sender.confirm消息唯一标识:" + correlationData + ",确认结果ack:" + ack + ",cause失败原因:" + cause);
     }
 
-//    @Override
-//    public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {
-//        System.err.println("returnedMessage:" + message + ",replyCode:" + replyCode + ",replyText:" + replyText +
-//                "，exchange:" + exchange + "," + routingKey);
-//
-//    }
+    @Override
+    public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {
+        System.err.println("Sender.returnedMessage:" + message + ",replyCode:" + replyCode + ",replyText:" + replyText +
+                "，exchange:" + exchange + "," + routingKey);
+    }
     //发送消息，不需要实现任何接口，供外部调用。
     public void send(String exchange,String routingKey,String msg){
         CorrelationData correlationId = new CorrelationData(UUID.randomUUID().toString());

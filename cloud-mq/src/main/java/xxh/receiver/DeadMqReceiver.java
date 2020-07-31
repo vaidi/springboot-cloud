@@ -23,7 +23,7 @@ public class DeadMqReceiver {
     @RabbitListener(queues = BUSINESS_QUEUEA_NAME)
     public void receiveA(Message message, Channel channel) throws IOException {
         String msg = new String(message.getBody());
-        log.info("收到业务消息A：{}", msg);
+        System.out.println("收到业务消息A："+ msg);
         boolean ack = true;
         Exception exception = null;
         try {

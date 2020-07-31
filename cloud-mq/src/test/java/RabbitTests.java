@@ -51,64 +51,56 @@ public class RabbitTests {
     @Test
     public void SerializationMq() throws InterruptedException {
         rabbitTemplate.setMessageConverter(new Jackson2JsonMessageConverter());
-        while (true){
+        while (true) {
             UserData userData = UserData.builder().mobile("1761021152").name("xxh").build();
-            System.out.println("userData:"+userData);
+            System.out.println("userData:" + userData);
             //rabbitTemplate.convertAndSend(SerializationMqConfig.EXCHANGE_NAME,"",userData);
-            rabbitTemplate.convertAndSend(SerializationMqConfig.EXCHANGE_NAME,"",userData);
+            rabbitTemplate.convertAndSend(SerializationMqConfig.EXCHANGE_NAME, "", userData);
             sleep(1000);
         }
     }
 
 
     @Test
-    public void testBackUpMq(){
-        String message = "hello world!" +",发送时间:"+ dtf.format(LocalDateTime.now());
+    public void testBackUpMq() {
+        String message = "hello world!" + ",发送时间:" + dtf.format(LocalDateTime.now());
         //配置消息规则
         MessageProperties messageProperties = new MessageProperties();
         //要发送的消息，第一个参数为具体的消息字节数组，第二个参数为消息规则
         Message msg = new Message(message.getBytes(), messageProperties);
-        rabbitTemplate.convertAndSend(BackUpMqConfig.BUSINESS_EXCHANGE_NAME,BackUpMqConfig.BUSINESS_ROUTING_KEY,msg);
-        rabbitTemplate.convertAndSend(BackUpMqConfig.BUSINESS_EXCHANGE_NAME,BackUpMqConfig.BUSINESS_ROUTING_KEY+"..",msg);
+        rabbitTemplate.convertAndSend(BackUpMqConfig.BUSINESS_EXCHANGE_NAME, BackUpMqConfig.BUSINESS_ROUTING_KEY, msg);
+        rabbitTemplate.convertAndSend(BackUpMqConfig.BUSINESS_EXCHANGE_NAME, BackUpMqConfig.BUSINESS_ROUTING_KEY + "..", msg);
     }
-
 
 
     @Test
     public void testSender() throws InterruptedException {
         AtomicInteger integer = new AtomicInteger(0);
-        while (true){
-            String message = "hello world!" +",发送时间:"+ dtf.format(LocalDateTime.now())+integer.getAndIncrement();
-            //配置消息规则
-            MessageProperties messageProperties = new MessageProperties();
-            //要发送的消息，第一个参数为具体的消息字节数组，第二个参数为消息规则
-            Message msg = new Message(message.getBytes(), messageProperties);
-            //rabbitTemplate.convertAndSend(ConfirmMqConfig.EXCHANGE_NAME, ConfirmMqConfig.ROUTING_KEY, msg);
-            sender.send(ConfirmMqConfig.EXCHANGE_NAME, ConfirmMqConfig.ROUTING_KEY, message);
-            //rabbitTemplate.convertAndSend(ConfirmMqConfig.EXCHANGE_NAME, ConfirmMqConfig.ROUTING_KEY, message);
-            sleep(1000);
-        }
+        String message = "hello world!" + ",发送时间:" + dtf.format(LocalDateTime.now()) + integer.getAndIncrement();
+        //配置消息规则
+        MessageProperties messageProperties = new MessageProperties();
+        //要发送的消息，第一个参数为具体的消息字节数组，第二个参数为消息规则
+        Message msg = new Message(message.getBytes(), messageProperties);
+        //rabbitTemplate.convertAndSend(ConfirmMqConfig.EXCHANGE_NAME, ConfirmMqConfig.ROUTING_KEY, msg);
+        sender.send(DirectMqConfig.EXCHANGE_NAME + "..", DirectMqConfig.ROUTING_KEY + "..", message);
+        //rabbitTemplate.convertAndSend(ConfirmMqConfig.EXCHANGE_NAME, ConfirmMqConfig.ROUTING_KEY, message);
+        sleep(10000);
 
     }
-
-
-
-
-
 
 
     @Test
     public void testConfirmQueue() throws InterruptedException {
         AtomicInteger integer = new AtomicInteger(0);
-        while (true){
-            String message = "hello world!" +",发送时间:"+ dtf.format(LocalDateTime.now())+integer.getAndIncrement();
+        while (true) {
+            String message = "hello world!" + ",发送时间:" + dtf.format(LocalDateTime.now()) + integer.getAndIncrement();
             //配置消息规则
             MessageProperties messageProperties = new MessageProperties();
             //要发送的消息，第一个参数为具体的消息字节数组，第二个参数为消息规则
             Message msg = new Message(message.getBytes(), messageProperties);
             //rabbitTemplate.convertAndSend(ConfirmMqConfig.EXCHANGE_NAME, ConfirmMqConfig.ROUTING_KEY, msg);
             rabbitTemplate.convertAndSend(ConfirmMqConfig.EXCHANGE_NAME, ConfirmMqConfig.ROUTING_KEY, msg);
-            sleep(50);
+            sleep(5000);
         }
 
     }
@@ -116,31 +108,30 @@ public class RabbitTests {
     @Test
     public void testConnectionFactory() throws InterruptedException {
         Properties properties = connectionFactory.getPublisherConnectionFactoryCacheProperties();
-        log.info("connectionFactory:{}",connectionFactory);
-        log.info("properties:{}",properties);
+        log.info("connectionFactory:{}", connectionFactory);
+        log.info("properties:{}", properties);
         System.err.println("hello world");
         sleep(10000);
     }
 
 
-
     @Test
     public void testTtlQueue() throws InterruptedException {
         AtomicInteger integer = new AtomicInteger(0);
-        while (true){
+        while (true) {
             int num = integer.getAndIncrement();
-            String message = "hello world!" +",发送时间:"+ dtf.format(LocalDateTime.now())+",num:"+num;
+            String message = "hello world!" + ",发送时间:" + dtf.format(LocalDateTime.now()) + ",num:" + num;
             //配置消息规则
             MessageProperties messageProperties = new MessageProperties();
-            if(num == 0){
-               messageProperties.setExpiration("60000");
+            if (num == 0) {
+                messageProperties.setExpiration("60000");
 
-            }else{
+            } else {
                 messageProperties.setExpiration("2000");
             }
 
 
-          //  messageProperties.setDelay(6000);
+            //  messageProperties.setDelay(6000);
             //messageProperties.setHeader("xinhua", "erlong");
             //要发送的消息，第一个参数为具体的消息字节数组，第二个参数为消息规则
             Message msg = new Message(message.getBytes(), messageProperties);
@@ -180,13 +171,6 @@ public class RabbitTests {
     }
 
 
-
-
-
-
-
-
-
     @Test
     public void testIdempotentQueue() throws InterruptedException {
         AtomicInteger integer = new AtomicInteger(0);
@@ -215,10 +199,13 @@ public class RabbitTests {
     public void testDeadQueue() throws InterruptedException {
         AtomicInteger integer = new AtomicInteger(0);
         while (true) {
-            new Thread(() -> {
-                int mm = integer.getAndIncrement();
-                rabbitTemplate.convertAndSend(DeadMqConfig.BUSINESS_EXCHANGE_NAME, "xx", "发送的消息:" + mm);
-            }).start();
+            String message ="";
+            int mm = integer.getAndIncrement();
+            if(mm ==3){
+                 message = "deadletter";
+            }
+            rabbitTemplate.convertAndSend(DeadMqConfig.BUSINESS_EXCHANGE_NAME, "xx", "发送的消息:" + mm+message);
+            sleep(10000);
         }
     }
 
