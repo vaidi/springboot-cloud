@@ -94,13 +94,13 @@ public class RabbitTests {
         AtomicInteger integer = new AtomicInteger(0);
         while (true) {
             String message = "hello world!" + ",发送时间:" + dtf.format(LocalDateTime.now()) + integer.getAndIncrement();
-            //配置消息规则
+            //配置消息规则AUTO
             MessageProperties messageProperties = new MessageProperties();
             //要发送的消息，第一个参数为具体的消息字节数组，第二个参数为消息规则
             Message msg = new Message(message.getBytes(), messageProperties);
             //rabbitTemplate.convertAndSend(ConfirmMqConfig.EXCHANGE_NAME, ConfirmMqConfig.ROUTING_KEY, msg);
-            rabbitTemplate.convertAndSend(ConfirmMqConfig.EXCHANGE_NAME, ConfirmMqConfig.ROUTING_KEY, msg);
-            sleep(5000);
+            rabbitTemplate.convertAndSend(ConfirmMqConfig.EXCHANGE_NAME, ConfirmMqConfig.ROUTING_KEY+"...", msg);
+            sleep(500000);
         }
 
     }
@@ -131,8 +131,6 @@ public class RabbitTests {
             }
 
 
-            //  messageProperties.setDelay(6000);
-            //messageProperties.setHeader("xinhua", "erlong");
             //要发送的消息，第一个参数为具体的消息字节数组，第二个参数为消息规则
             Message msg = new Message(message.getBytes(), messageProperties);
             rabbitTemplate.convertAndSend(TtlMqConfig.EXCHANGE_NAME, TtlMqConfig.ROUTING_KEY, msg);
@@ -272,7 +270,7 @@ public class RabbitTests {
             rabbitTemplate.convertAndSend(FanoutMqConfig.FANOUT_EXCHANGE,
                     "xxx", "xxh：" + mm);
             System.out.println("mm:" + mm);
-            sleep(5000);
+            sleep(5);
         }
     }
 
@@ -283,9 +281,8 @@ public class RabbitTests {
         while (true) {
             int mm = integer.getAndIncrement();
             rabbitTemplate.convertAndSend(DirectMqConfig.EXCHANGE_NAME,
-                    "test.direct.xxh", "xxh：" + mm);
-            System.out.println("mm:" + mm);
-            sleep(5000);
+                    DirectMqConfig.ROUTING_KEY, "xxh：" + mm);
+            sleep(5000000);
         }
     }
 

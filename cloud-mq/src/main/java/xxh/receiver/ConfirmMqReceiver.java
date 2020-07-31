@@ -27,9 +27,9 @@ public class ConfirmMqReceiver {
         Long deliveryTag = (Long) headers.get(AmqpHeaders.DELIVERY_TAG);
         System.err.println("ConfirmMqReceiver队列接受到消息"+new String(message.getBody(), "UTF-8"));
         Integer num = Integer.valueOf(new String(message.getBody()));
-        sleep(10000);
-        channel.basicAck(deliveryTag, false);
-       /* if(num == 0){
+        sleep(1000);
+        //channel.basicAck(deliveryTag,true);
+       if(num == 0){
             channel.basicAck(deliveryTag, false);
         }
         if(num ==1){
@@ -49,7 +49,7 @@ public class ConfirmMqReceiver {
         System.out.println("消息确认完毕:"+num);
         if(num ==5){
             throw new IOException();
-        }*/
+        }
 
     }
 }
