@@ -10,7 +10,7 @@ import xxh.config.TopicMqConfig;
  * @Date: 2020/7/6 4:19 下午
  */
 @Component
-public class TopMqReceiver {
+public class TopicMqReceiver {
 
     @RabbitListener(queues = TopicMqConfig.TOPIC_QUEUE1)
     @RabbitHandler

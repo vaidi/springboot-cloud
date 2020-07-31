@@ -19,7 +19,7 @@ import java.io.IOException;
  * @Date: 2020/7/14 7:21 下午
  */
 @Component
-public class ChannelBasicReceiver {
+public class ChannelBasicMqReceiver {
 
     public static final String BASIC_QUEUE ="basic_queue";
     public static final String BASIC_EXCHANGE ="basic_queue_exchange";

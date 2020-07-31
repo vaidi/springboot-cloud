@@ -7,14 +7,23 @@ spring:
     publisher-confirms: true #确认消息已发送到交换机(Exchange)
     publisher-returns: true  #确认消息已发送到队列(Queue)
     template:
-      mandatory: true
+      mandatory: true #设置为 true 后 消费者在消息没有被路由到合适队列情况下会被return监听，而不会自动删除
       ###监听者信息配置
     listener:
       simple:
-       default-requeue-rejected: false  #消息重新进入队列是否开启
-       concurrency: 2 #最小消息监听线程数
-       max-concurrency: 2 #最大消息监听线程数
-       acknowledge-mode: manual #消费者接受消息 确认方式AcknowledgeMode.NONE：自动确认，AcknowledgeMode.AUTO：根据情况确认，AcknowledgeMode.MANUAL：手动确认
+        retry:
+          # 开启消费者(程序出现异常)重试机制，默认开启并一直重试
+          enabled: true
+          # 最大重试次数
+          max-attempts: 5
+          # 重试间隔时间(毫秒)
+          initial-interval: 3000
+        #default-requeue-rejected: false  #消息重新进入队列是否开启
+        concurrency: 1 #最小消息监听线程数
+        max-concurrency: 10 #最大消息监听线程数
+        acknowledge-mode: manual #消费者接受消息 确认方式AcknowledgeMode.NONE：自动确认，AcknowledgeMode.AUTO：根据情况确认，AcknowledgeMode.MANUAL：手动确认
+        prefetch: 3 #一次就收三条
+
 logging:
   level:
     root: info
