@@ -25,6 +25,7 @@
         <module>cloud-consul-client</module>
         <module>cloud-nacos-hello</module>
         <module>cloud-mq</module>
+        <module>cloud-spring</module>
     </modules>
 
 

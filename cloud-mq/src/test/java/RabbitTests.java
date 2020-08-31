@@ -249,17 +249,17 @@ public class RabbitTests {
     }
 
 
-    @Test
-    public void testTopicQueue() throws InterruptedException {
-        AtomicInteger integer = new AtomicInteger(0);
-        while (true) {
-            int mm = integer.getAndIncrement();
-            rabbitTemplate.convertAndSend(TopicMqConfig.TOPIC_EXCHANGE,
-                    "test.topic.12212", "xxh：" + mm);
-            System.out.println("mm:" + mm);
-            sleep(5000);
-        }
-    }
+//    @Test
+//    public void testTopicQueue() throws InterruptedException {
+//        AtomicInteger integer = new AtomicInteger(0);
+//        while (true) {
+//            int mm = integer.getAndIncrement();
+//            rabbitTemplate.convertAndSend(TopicMqConfig.TOPIC_EXCHANGE,
+//                    "test.topic.12212", "xxh：" + mm);
+//            System.out.println("mm:" + mm);
+//            sleep(5000);
+//        }
+//    }
 
 
     @Test

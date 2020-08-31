@@ -12,5 +12,6 @@
     <file url="file://$PROJECT_DIR$/cloud-mq-consumer" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cloud-mq-provider" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cloud-nacos-hello" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cloud-spring" charset="UTF-8" />
   </component>
 </project>

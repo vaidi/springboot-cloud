@@ -22,7 +22,7 @@ spring:
         concurrency: 1 #最小消息监听线程数
         max-concurrency: 10 #最大消息监听线程数
         acknowledge-mode: manual #消费者接受消息 确认方式AcknowledgeMode.NONE：自动确认，AcknowledgeMode.AUTO：根据情况确认，AcknowledgeMode.MANUAL：手动确认
-        prefetch: 3 #一次就收三条
+        prefetch: 10 #一次就收三条
 
 logging:
   level:
