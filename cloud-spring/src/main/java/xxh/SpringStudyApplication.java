@@ -2,6 +2,8 @@ package xxh;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import xxh.condition.CmdService;
 
 /**
  * @Author: xxh——el
@@ -15,6 +17,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SpringStudyApplication {
     public static void main(String[] args) {
-        SpringApplication.run(SpringStudyApplication.class,args);
+        ApplicationContext ctx =  (ApplicationContext) SpringApplication.run(SpringStudyApplication.class, args);
+        CmdService cmdService = ctx.getBean(CmdService.class);
+        cmdService.print();
+        //SpringApplication.run(SpringStudyApplication.class,args);
     }
 }
