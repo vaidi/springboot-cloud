@@ -11,12 +11,9 @@
         <module name="cloud-spring" />
         <module name="cloud-nacos-hello" />
         <module name="cloud-eureka-server" />
-        <module name="cloud-eureka-client" />
-        <module name="cloud-consul-provider" />
         <module name="cloud-eureka-provider" />
         <module name="cloud-consul-client" />
         <module name="cloud-mq" />
-        <module name="cloud-clofig-client" />
         <module name="cloud-mq-provider" />
         <module name="cloud-mq-consumer" />
         <module name="cloud-config-client" />
@@ -26,12 +23,9 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="cloud-clofig-client" options="-parameters" />
       <module name="cloud-config-client" options="-parameters" />
       <module name="cloud-config-server" options="-parameters" />
       <module name="cloud-consul-client" options="-parameters" />
-      <module name="cloud-consul-provider" options="-parameters" />
-      <module name="cloud-eureka-client" options="-parameters" />
       <module name="cloud-eureka-consumer" options="-parameters" />
       <module name="cloud-eureka-provider" options="-parameters" />
       <module name="cloud-eureka-server" options="-parameters" />

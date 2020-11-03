@@ -2,6 +2,7 @@ package xxh;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ApplicationContext;
 import xxh.condition.CmdService;
 
@@ -15,11 +16,16 @@ import xxh.condition.CmdService;
  *
  */
 @SpringBootApplication
+@EnableCaching
 public class SpringStudyApplication {
     public static void main(String[] args) {
         ApplicationContext ctx =  (ApplicationContext) SpringApplication.run(SpringStudyApplication.class, args);
         CmdService cmdService = ctx.getBean(CmdService.class);
         cmdService.print();
+        System.out.println("主程序启动完毕，请进行下面步骤!");
+        System.out.println("主程序启动完毕，请进行下面步骤!");
+        System.out.println("主程序启动完毕，请进行下面步骤!");
+
         //SpringApplication.run(SpringStudyApplication.class,args);
     }
 }
