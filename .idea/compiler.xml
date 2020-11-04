@@ -7,17 +7,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="cloud-config-server" />
-        <module name="cloud-spring" />
-        <module name="cloud-nacos-hello" />
-        <module name="cloud-eureka-server" />
-        <module name="cloud-eureka-provider" />
+        <module name="cloud-eureka-consumer" />
         <module name="cloud-consul-client" />
+        <module name="cloud-config-client" />
+        <module name="cloud-config-server" />
+        <module name="cloud-eureka-provider" />
+        <module name="cloud-mq-consumer" />
+        <module name="cloud-spring" />
+        <module name="cloud-eureka-server" />
         <module name="cloud-mq" />
         <module name="cloud-mq-provider" />
-        <module name="cloud-mq-consumer" />
-        <module name="cloud-config-client" />
-        <module name="cloud-eureka-consumer" />
+        <module name="cloud-nacos-hello" />
       </profile>
     </annotationProcessing>
   </component>

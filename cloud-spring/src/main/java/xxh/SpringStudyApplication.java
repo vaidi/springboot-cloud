@@ -23,9 +23,6 @@ public class SpringStudyApplication {
         CmdService cmdService = ctx.getBean(CmdService.class);
         cmdService.print();
         System.out.println("主程序启动完毕，请进行下面步骤!");
-        System.out.println("主程序启动完毕，请进行下面步骤!");
-        System.out.println("主程序启动完毕，请进行下面步骤!");
-
         //SpringApplication.run(SpringStudyApplication.class,args);
     }
 }
