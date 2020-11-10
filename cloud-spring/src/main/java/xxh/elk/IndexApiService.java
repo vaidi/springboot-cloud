@@ -31,8 +31,7 @@ public class IndexApiService {
             builder.startObject();
             {
                 builder.field("user", "kimchy");
-                builder.timeValueField("postDate", "readableFieldName", new TimeValue(1000L));
-                //builder.timeField("postDate", new Date());
+                builder.timeField("postDate", new Date());
                 builder.field("message", "trying out Elasticsearch");
             }
             builder.endObject();
@@ -62,9 +61,9 @@ public class IndexApiService {
         indexRequest.timeout("1s");
         indexRequest.setRefreshPolicy(WriteRequest.RefreshPolicy.WAIT_UNTIL);
         indexRequest.setRefreshPolicy("wait_for");
-        indexRequest.opType(DocWriteRequest.OpType.CREATE);
-        indexRequest.opType("create");
-        indexRequest.versionType(VersionType.EXTERNAL);
+        //indexRequest.opType(DocWriteRequest.OpType.CREATE);
+       // indexRequest.opType("create");
+        //indexRequest.versionType(VersionType.EXTERNAL);
         return indexRequest;
 
     }
