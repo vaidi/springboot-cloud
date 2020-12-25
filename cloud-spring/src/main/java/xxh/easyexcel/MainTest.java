@@ -15,7 +15,7 @@ public class MainTest {
 
     public static void main(String[] args) {
 
-        String mobiles = "17610721152,12";
+        String mobiles = "17610721152,501165495511289856";
 
         StringBuilder errorMobile = new StringBuilder();
         String[] attr = mobiles.split(";");
@@ -56,7 +56,8 @@ public class MainTest {
         data.add("content", sb.toString()
         );
         data.add("msgtype", "2");
-        data.add("tempid","JSM40481-0079");
+        data.add("tempid","JSM40481-0088");
+       // data.add("tempid","JSM40481-0079");
         data.add("code", "utf-8");
         String result = restTemplate.postForEntity("http://112.74.76.186:8030/service/httpService/httpInterface.do?method=sendUtf8Msg", data, String.class).getBody();
         if(result.indexOf("<status>0</status>")>0){

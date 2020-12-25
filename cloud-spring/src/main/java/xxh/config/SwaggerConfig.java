@@ -28,6 +28,7 @@ public class SwaggerConfig {
 
     @Bean
     public Docket createRestApi(){
+        System.out.println();
         // 添加请求参数，我们这里把token作为请求头部参数传入后端
         ParameterBuilder parameterBuilder = new ParameterBuilder();
         List<Parameter> parameters = new ArrayList<Parameter>();

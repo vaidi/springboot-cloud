@@ -1,5 +1,6 @@
 package xxh.security.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -15,15 +16,16 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
 import xxh.security.common.JwtAuthenticationProvider;
-import xxh.security.controller.JwtAuthenticationFilter;
+import xxh.security.filter.JwtAuthenticationFilter;
 
 /**
  * @Author: elyuan
  * @Date: 2020/11/19 2:39 下午
  */
+@Slf4j
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)//让@PreAuthorize注解的生效
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -32,6 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        log.info("configure auth:{}",auth);
         // 使用自定义登录身份认证组件
         auth.authenticationProvider(new JwtAuthenticationProvider(userDetailsService));
     }
@@ -45,6 +48,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 // 登录URL
                 .antMatchers("/login").permitAll()
+                //让shiro都能通过
+                .antMatchers("/shiro/**").permitAll()
                 // swagger
                 .antMatchers("/swagger**/**").permitAll()
                 .antMatchers("/webjars/**").permitAll()

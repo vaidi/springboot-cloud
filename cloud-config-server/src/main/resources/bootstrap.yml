@@ -11,14 +11,14 @@ spring:
           default-label: master #配置文件分支
           force-pull: true
          # search-paths: /config #配置文件所在根目录
-eureka:
-  client:
-    serviceUrl:
-      registerWithEureka: true
-      fetchRegistry: true
-      defaultZone: http://xxh:310292863@localhost:3000/eureka/  #这里的格式必须是这种姓名：密码的方式，是因为开启了验证
-  instance:
-    preferIpAddress: true
+#eureka:
+#  client:
+#    serviceUrl:
+#      registerWithEureka: true
+#      fetchRegistry: true
+#      defaultZone: http://xxh:310292863@localhost:3000/eureka/  #这里的格式必须是这种姓名：密码的方式，是因为开启了验证
+#  instance:
+#    preferIpAddress: true
 
 
 

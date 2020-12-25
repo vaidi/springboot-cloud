@@ -16,3 +16,8 @@ spring:
   devtools:
     restart:
       enabled: true
+
+#这个是用来远程连接的
+#arthas:
+#  agent-id: hsehdfsfghhwertyfad
+  #tunnel-server: ws://127.0.0.1:7777/ws

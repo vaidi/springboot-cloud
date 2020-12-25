@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import xxh.security.bean.HttpResult;
 import xxh.security.bean.User;
@@ -18,6 +19,7 @@ import java.io.IOException;
  * @Date: 2020/11/19 2:47 下午
  */
 @RestController
+@RequestMapping("/security")
 public class LoginController {
 
     @Autowired
