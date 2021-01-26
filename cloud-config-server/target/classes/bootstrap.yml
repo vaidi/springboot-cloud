@@ -1,15 +1,17 @@
-spring:
-  application:
-    name: config-single-server  # 应用名称
-  cloud:
-    config:
-      server:
-        git:
-          uri: https://github.com/vaidi/cloud-cofig.git #配置文件所在仓库
-          username: 310292863@qq.com #登录账号
-          password: y310292863 #登录密码
-          default-label: master #配置文件分支
-          force-pull: true
+#spring:
+#  profiles:
+#    active: native
+#  application:
+#    name: config-single-server  # 应用名称
+#  cloud:
+#    config:
+#      server:
+#        git:
+#          uri: https://github.com/vaidi/cloud-cofig.git #配置文件所在仓库
+#          username: 310292863@qq.com #登录账号
+#          password: y310292863 #登录密码
+#          default-label: master #配置文件分支
+#          force-pull: true
          # search-paths: /config #配置文件所在根目录
 #eureka:
 #  client:

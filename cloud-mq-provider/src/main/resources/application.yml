@@ -1,0 +1,26 @@
+logging:
+  level:
+    root: info
+server:
+  port: 8081
+
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    env: #启用端点env  默认所有端点都启用
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,env,beans #web展示
+      cors:
+        allowed-origins: "https://example.com"
+        allowed-methods: "GET,POST"
+
+info:
+  app:
+    name: @project.artifactId@
+    encoding: @project.build.sourceEncoding@
+    java: @java.version@
+

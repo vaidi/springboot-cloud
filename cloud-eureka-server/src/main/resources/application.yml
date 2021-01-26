@@ -10,7 +10,8 @@ eureka:
     registerWithEureka: false # 单点的时候设置为 false 禁止注册自身
     fetchRegistry: false  # 注册中心职责是维护服务实例，false：不检索服务
     serviceUrl:
-      defaultZone: http://localhost:3000/eureka/
+     # defaultZone: http://localhost:3000/eureka/
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
       enableSelfPreservation: false
       evictionIntervalTimerInMs: 4000
 

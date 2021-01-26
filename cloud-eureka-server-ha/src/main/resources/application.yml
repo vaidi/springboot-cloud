@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: eureka-server-ha
+---
+spring:
+  profiles:
+    active: peer1
+server:
+  port: 4000
+eureka:
+  instance:
+    hostname: peer1
+  client:
+    serviceUrl:
+      defaultZone: http://peer2:3000/eureka/
+---
+spring:
+  profiles:
+    active: peer2
+server:
+  port: 3000
+eureka:
+  instance:
+    hostname: peer2
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:3000/eureka/
+
+
+
+
+
+#server:
+#  port: 4000
+#  servlet:
+#    context-path: /
+#eureka:
+#  instance:
+#    hostname: eureka-center
+#    appname: 注册中心
+#  client:
+#    registerWithEureka: false # 单点的时候设置为 false 禁止注册自身
+#    fetchRegistry: false  # 注册中心职责是维护服务实例，false：不检索服务
+#    serviceUrl:
+#      defaultZone: http://localhost:3000/eureka/
+#      enableSelfPreservation: false
+#      evictionIntervalTimerInMs: 4000
+#  bootstrap.yml 在 application.yml 之前启动；
+#  bootstrap.yml 配置 application 的 name、spring.cloud.config.server.git.uri、一些encryption/decryption（加密/解密）信息；
+#  application.yml 的信息会覆盖 bootstrap.yml 中的内容，当遇到相同的配置的时候；
+

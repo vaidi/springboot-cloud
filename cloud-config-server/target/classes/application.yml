@@ -1,3 +1,16 @@
 server:
   port: 3301
 
+spring:
+  profiles:
+    active: native
+  application:
+    name: config-single-server  # 应用名称
+  cloud:
+    config:
+      server:
+        native:
+          #search-locations:   file:/Users/erlong/IdeaProjects/springboot-cloud/cloud-config-server/src/main/resources/xxh
+          search-locations:   classpath:/xxh
+
+xxh: elyuan
